@@ -5,18 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+
     {% if title %}
         <title>Flask Blog - {{ title }}</title>
     {% else %}
-        <title>Flask Blog - About</title>
+        <title>Flask Blog </title>
     {% endif %}
 </head>
 <body>
-     <div class="container">
-    {% block content %}
-    {% endblock %}
-    </div>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container">
+                <a class="navbar-brand mr-4" href="/">Flask Blog</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class ="navbar-nav ml-auto">
+                        <a class="nav-item nav-link" href="/">Home</a>
+                        <a class="nav-item nav-link" href="/about">About</a>
+                    </div>
+                    </div class="navbar-nav">
+                        <a class="nav-item nav-link" href="/register">Register</a>
+                        <a class="nav-item nav-link" href="/login">Login</a>
+                    </div>
+                </div>
+            </div>                    
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% block content %}{% endblock %}
+            </div>
+            <div class="col-md-8">
+                <div class="comment-section">
+                    <h3>Our Sidebar</h3>
+                    <p class="text-muted">You can put any information you like here.</p>
+                        <ul>
+                            <li>Latest Posts</li>
+                            <li>Announcements</li>
+                            <li>Calendar</li>
+                            <li>Contact Us</li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!--Optional JavaScript  -->
     <!-- Popper.js first, then Bootstrap JS -->
