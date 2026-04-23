@@ -25,13 +25,18 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class ="navbar-nav ml-auto">
+                    <div class ="navbar-nav ms-auto">
                         <a class="nav-item nav-link" href="/">Home</a>
                         <a class="nav-item nav-link" href="/about">About</a>
                     </div>
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="/register">Register</a>
-                        <a class="nav-item nav-link" href="/login">Login</a>
+                        {% if current_user.is_authenticated %}
+                            <a class="nav-item nav-link" href="#">Hello, {{ current_user.username }}</a>
+                            <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+                        {% else %}
+                            <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+                            <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                        {% endif %}    
                     </div>
                 </div>
             </div>                    
@@ -52,7 +57,7 @@
             <div class="col-md-8">
                 {% block content %}{% endblock %}
             </div>
-            <div class="col-md-8">
+            <div class="col-ms-8">
                 <div class="comment-section">
                     <h3>Our Sidebar</h3>
                     <p class="text-muted">You can put any information you like here.</p>
@@ -66,6 +71,7 @@
             </div>
         </div>
     </main>
+
 
     <!--Optional JavaScript  -->
     <!-- Popper.js first, then Bootstrap JS -->
